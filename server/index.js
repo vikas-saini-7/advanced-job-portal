@@ -22,7 +22,7 @@ connectDB();
 
 // routes
 app.use('/api', jobRoutes);
-app.use('/api/user', userRoutes);
+app.use('/api', userRoutes);
 
 // Test route
 app.get('/api/test', (req, res) => {
