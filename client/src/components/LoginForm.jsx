@@ -30,7 +30,7 @@ const LoginForm = () => {
                 <input className='border px-4 py-2 rounded mb-4' type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 <Button onClick={handleSubmit}>Login</Button>
                 <p className='text-center mt-8'>Don't have an account? 
-                <Link to='signup'> <span className='text-blue-600'>Signup</span></Link>
+                <Link to='/signup'> <span className='text-blue-600'>Signup</span></Link>
                 </p>
             </form>
         </div>

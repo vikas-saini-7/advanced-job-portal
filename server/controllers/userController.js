@@ -27,6 +27,17 @@ exports.login = async (req, res) => {
         res.json({ success: true, token });
     } catch (error) {
         console.error('Error logging in:', error);
-        res.status(500).json({ success: false, message: 'Server error' });
+        res.json({ success: false, message: 'Server error' });
     }
 };
+
+exports.validateToken = async (req, res) => {
+    try {
+        if(req.user){
+            res.status(201).json({success: true, data:req.user})
+        }
+    } catch (error) {
+        console.error('Error fetching jobs by user:', error);
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+}
