@@ -19,7 +19,6 @@ export const loginUser = createAsyncThunk(
 );
 
 // actions/authActions.js
-
 export const loginUserWithToken = createAsyncThunk(
   'auth/loginUserWithToken',
   async (token, { rejectWithValue }) => {

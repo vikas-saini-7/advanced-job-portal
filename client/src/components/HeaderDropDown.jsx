@@ -2,7 +2,6 @@ import {
   LogOut,
   User,
 } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -13,8 +12,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { useDispatch } from "react-redux"
+import { logoutUser } from "@/redux/reducers/authSlice"
 
 function HeaderDropDown() {
+  const dispatch = useDispatch()
+
+  function handleLogout(){
+    localStorage.removeItem('token');
+    dispatch(logoutUser())
+  }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -33,7 +40,7 @@ function HeaderDropDown() {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={handleLogout}>
           <LogOut className="mr-2 h-4 w-4" />
           <span>Log out</span>
         </DropdownMenuItem>
