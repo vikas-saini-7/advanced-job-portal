@@ -4,9 +4,10 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../redux/actions/authActions'
 import { Button } from './ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const LoginForm = () => {
         e.preventDefault();
         if(email && password){
             dispatch(loginUser({ email, password }));
+            navigate('/')
         } else {
             alert("Enter credentials")
         }

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser, loginUserWithToken } from '../actions/authActions';
+import { loginUser, loginUserWithToken, signupUser } from '../actions/authActions';
 
 const initialState = {
     user: null,
@@ -19,6 +19,19 @@ const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+          .addCase(signupUser.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+          })
+          .addCase(signupUser.fulfilled, (state, action) => {
+            state.loading = false;
+            state.user = action.payload;
+            state.isLoggedIn = true;
+          })
+          .addCase(signupUser.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload.message || 'Signup failed'; // Handle potential missing error message
+          })
           .addCase(loginUser.pending, (state) => {
             state.loading = true;
             state.error = null;
@@ -30,8 +43,9 @@ const authSlice = createSlice({
           })
           .addCase(loginUser.rejected, (state, action) => {
             state.loading = false;
-            state.error = action.payload || 'Login failed'; // Handle potential missing error message
+            state.error = action.payload.message || 'Login failed'; // Handle potential missing error message
           })
+
           .addCase(loginUserWithToken.pending, (state) => {
             state.loading = true;
             state.error = null;

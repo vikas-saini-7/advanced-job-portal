@@ -3,11 +3,12 @@ import './App.css'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import MainRouter from './router/MainRouter'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loginUserWithToken } from './redux/actions/authActions'
 
 function App() {
   const dispatch = useDispatch();
+  const loading = useSelector(state => state.auth.loading);
   useEffect(()=>{
     if(localStorage.getItem('token')){
       const token = localStorage.getItem('token');
@@ -17,11 +18,17 @@ function App() {
 
   return (
     <>
+      {loading ?
+      <p className='text-center pt-[10%]'>Loading...</p>
+      :
+      <>
       <Header/>
       <main className='container py-8 min-h-[80vh]'>
         <MainRouter/>
       </main>
       <Footer/>
+      </>
+      }
     </>
   )
 }
