@@ -12,11 +12,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { logoutUser } from "@/redux/reducers/authSlice"
 
 function HeaderDropDown() {
   const dispatch = useDispatch()
+  const name = useSelector(state => state.auth.user.name)
 
   function handleLogout(){
     localStorage.removeItem('token');
@@ -27,7 +28,7 @@ function HeaderDropDown() {
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
           <User className="mr-2 h-4 w-4" />
-          <p>Name</p>
+          <p>{name}</p>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
