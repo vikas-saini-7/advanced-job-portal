@@ -3,7 +3,6 @@ const User = require('../models/userModel');
 
 exports.signup = async (req, res) => {
     try {
-        console.log(req.body);
         const { name, email, password } = req.body;
         const user = await User.findOne({ email });
         if(user){
