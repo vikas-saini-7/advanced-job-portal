@@ -1,14 +1,15 @@
+import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 // Async thunk to fetch search results
-export const searchJobs = createAsyncThunk(
-    'search/searchJobs',
-    async () => {
+export const fetchJobs = createAsyncThunk(
+    'searchJobs/fetchJobs',
+    async ({ jobName, location }, thunkAPI) => {
         const options = {
         method: 'GET',
         url: 'https://jsearch.p.rapidapi.com/search',
         params: {
-            query: 'Python developer in Texas, USA',
+            query: `${jobName} in ${location}`,
             page: '1',
             num_pages: '1'
         },

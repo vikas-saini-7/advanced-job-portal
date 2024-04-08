@@ -1,33 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { searchJobs } from "../actions/searchJobsActions";
+import { fetchJobs } from "../actions/searchJobsActions";
 
 // Slice to manage search state
 const searchSlice = createSlice({
     name: 'search',
     initialState: {
       results: [],
+      activeJob: null,
       loading: false,
       error: null
     },
     reducers: {
-      // Add reducers for other actions if needed
+        setActiveJob(state, action){
+          state.activeJob = action.payload;
+        }
     },
     extraReducers: (builder) => {
       builder
-        .addCase(searchJobs.pending, (state) => {
+        .addCase(fetchJobs.pending, (state) => {
           state.loading = true;
           state.error = null;
         })
-        .addCase(searchJobs.fulfilled, (state, action) => {
+        .addCase(fetchJobs.fulfilled, (state, action) => {
           state.loading = false;
           state.results = action.payload;
         })
-        .addCase(searchJobs.rejected, (state, action) => {
+        .addCase(fetchJobs.rejected, (state, action) => {
           state.loading = false;
           state.error = action.error.message;
         });
     },
   });
   
-  // export const { /* Add action creators if needed */ } = searchSlice.actions;
+  export const { setActiveJob } = searchSlice.actions;
   export default searchSlice.reducer;
