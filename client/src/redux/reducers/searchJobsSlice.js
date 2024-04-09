@@ -7,12 +7,20 @@ const searchSlice = createSlice({
     initialState: {
       results: [],
       activeJob: null,
+      query: {
+        q_job: '',
+        q_location: '',
+      },
       loading: false,
       error: null
     },
     reducers: {
         setActiveJob(state, action){
           state.activeJob = action.payload;
+        },
+        setQueryData(state, action){
+          state.query.q_job = action.payload.q_job;
+          state.query.q_location = action.payload.q_location;
         }
     },
     extraReducers: (builder) => {
@@ -32,5 +40,5 @@ const searchSlice = createSlice({
     },
   });
   
-  export const { setActiveJob } = searchSlice.actions;
+  export const { setActiveJob, setQueryData } = searchSlice.actions;
   export default searchSlice.reducer;

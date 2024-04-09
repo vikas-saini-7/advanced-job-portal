@@ -159,14 +159,14 @@ const SearchJobsSection = () => {
         {loading && <p className='text-center pt-[8%]'>Loading...</p>}
         {!loading && jobs &&
         <div className='flex gap-4'>
-            <div className='w-1/3'>
+            <div className='w-1/3 max-h-[70vh] overflow-auto pr-2'>
             {jobs?.map((job) => (
                 <SearchedJobItem
                     job={job}
                 />
             ))}
             </div>
-            <div className='w-2/3'>
+            <div className='w-2/3 max-h-[70vh] overflow-auto'>
                 <JobDetails
                     job={jobs[0]}
                 />
