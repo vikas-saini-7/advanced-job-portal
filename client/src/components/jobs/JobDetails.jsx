@@ -8,7 +8,7 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
-import { Badge } from './ui/badge'
+import { Badge } from '../ui/badge'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveJob } from '@/redux/reducers/searchJobsSlice'
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button } from './ui/button'
+import { Button } from '../ui/button'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchJobs } from '@/redux/actions/searchJobsActions';
 import { setQueryData } from '@/redux/reducers/searchJobsSlice';

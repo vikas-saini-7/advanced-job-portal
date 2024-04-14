@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import {fetchJobs} from '../redux/actions/searchJobsActions'
-import { Button } from './ui/button'
+import {fetchJobs} from '../../redux/actions/searchJobsActions'
+import { Button } from '../ui/button'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setQueryData } from '@/redux/reducers/searchJobsSlice'
